@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "Focas": {
+      "applicationId": "K6z4lLqDrkq7FKhwFXUYJ0J7ZVBthzizgGQiKRvU"
+    },
+    "_default": {
+      "link": "Focas"
+    }
+  }
+}
