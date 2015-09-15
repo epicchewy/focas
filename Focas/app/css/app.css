@@ -45,3 +45,44 @@
 	padding-left:0px;
 	padding-right:0px;
 }
+
+.chatlisttitle{
+	border-right: 2px solid black;
+	border-bottom: 2px solid black;
+	text-align: center;
+	color:white;
+	padding-top: 6px;
+	padding-bottom: 10px;
+	background-color: darkgray;
+}
+
+.boardtitle{
+	border-right: 2px solid black;
+	border-bottom: 2px solid black;
+	border-left: 2px solid black;
+	text-align: center;
+	color:white;
+	padding-top: 6px;
+	padding-bottom: 10px;
+	background-color: darkgray;
+
+.chattitle{
+	border-right: 2px solid black;
+	border-bottom: 2px solid black;
+	border-left: 2px solid black;
+	text-align: center;
+	color:white;
+	padding-top: 6px;
+	padding-bottom: 10px;
+	background-color: darkgray;
+}
+
+.paneltitle{
+	border-bottom: 2px solid black;
+	border-left: 2px solid black;
+	text-align: center;
+	color:white;
+	padding-top: 6px;
+	padding-bottom: 10px;
+	background-color: darkgray;
+}
