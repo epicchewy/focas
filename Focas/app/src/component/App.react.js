@@ -1,6 +1,5 @@
 var React = require('react');
 
-
 function getStateFromStores(){
 	return {
 		login: true,
@@ -10,23 +9,24 @@ function getStateFromStores(){
 
 var App = React.createClass({
 	getInitialState: function(){
-
+		return getStateFromStores();
 	},
 	componentDidMount: function(){
 		//store call
 	},
 	componentWillUnmount: function(){
-
+		//another store call
 	},
 	render: function(){
-		if(!this.state.login){
+		console.log("loaded");
+		if(this.state.login === false){
 			return (
 				<div>wtf is happening</div>
 			);
 		}else{
 			var chatRoom = this.state.chatRoomId;
 			return (
-				<div>hello boys</div>
+				<div>hello boys welcome to {chatRoom}!</div>
 
 			);
 			//make header chatroomarea and chatroom list 
@@ -34,3 +34,5 @@ var App = React.createClass({
 		}
 	}
 });
+
+module.exports = App;
