@@ -4,6 +4,7 @@ var source = require('vinyl-source-stream');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var reactify = require('reactify');
+var nodemon = require('gulp-nodemon');
 
 gulp.task('browserify', [], function(){
 	var bundler = browserify({
@@ -37,5 +38,34 @@ gulp.task('browserify', [], function(){
 		.pipe(source('app.js'))
 		.pipe(gulp.dest('./app/js'));
 });
+
+gulp.task('nodemon', ['browserify'], function(){
+	serverConf = {source: 'app/src/lib/server.js'};
+	nodemon(serverConf);
+});	
+
+// gulp.task('browser-sync', ['nodemon'], function() {
+// 	browserSync.init(null, {
+// 		proxy: "http://localhost:5000",
+//         files: ["public/**/*.*"],
+//         browser: "google chrome",
+//         port: 7000,
+// 	});
+// });
+// gulp.task('nodemon', function (cb) {
+	
+// 	var started = false;
+	
+// 	return nodemon({
+// 		script: './Focas/app/js/app.js'
+// 	}).on('start', function () {
+// 		// to avoid nodemon being started multiple times
+		
+// 		if (!started) {
+// 			cb();
+// 			started = true; 
+// 		} 
+// 	});
+// });
 
 gulp.task('default', ['browserify']);

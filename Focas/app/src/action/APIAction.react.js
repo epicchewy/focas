@@ -12,7 +12,7 @@ APIAction.prototype.init = function(){
 	if(this._init){
 		return;
 	}
-
+	this.client = Client(this);
 };
 
 APIAction.prototype.sendText = function(){
