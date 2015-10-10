@@ -1,11 +1,11 @@
 var React = require('react');
 
-function getStateFromStores(){
-	return {
-		login: true,
-		chatRoomId: "test"
-	}
-}
+// function getStateFromStores(){
+// 	return {
+// 		login: true,
+// 		chatRoomId: "test"
+// 	}
+// }
 
 var App = React.createClass({
 	getInitialState: function(){
@@ -19,18 +19,16 @@ var App = React.createClass({
 	},
 	render: function(){
 		console.log("loaded");
-		if(this.state.login === false){
-			return (
-				<div>wtf is happening</div>
-			);
-		}else{
-			var chatRoom = this.state.chatRoomId;
-			return (
-				<div>hello boys welcome to {chatRoom}!</div>
+		return (
+			<div className = "top">
+				<LoginView></LoginView>
 
-			);
+				<Header></Header>
+				<GroupChatRoom></GroupChatRoom>
+				<Board></Board>
+			</div>
+		);
 			//make header chatroomarea and chatroom list 
-//sdfa
 		}
 	},
 	getStateFromStores: function(){

@@ -1,18 +1,30 @@
 var React = require('react');
-var Client = require('../../../cloud/main.js');
+var Server = require('../../js/server');
 
 function APIAction(){
 	this._init = false;
-	this.client;
+
+	
 }
 
 APIAction.prototype.init = function(){
 	if(this._init){
 		return;
 	}
-	this.client = Client(this);
+
+	this.server = new Server;
+	this.server.setUp();
+	console.log("connected to db");
+	
+	
 };
 
 APIAction.prototype.sendText = function(){
 	
 };
+
+APIAction.prototype.postToBoard = function(){
+
+};
+
+modules.export = APIAction;
