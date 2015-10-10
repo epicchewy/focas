@@ -32,6 +32,9 @@ var App = React.createClass({
 			//make header chatroomarea and chatroom list 
 //sdfa
 		}
+	},
+	getStateFromStores: function(){
+		
 	}
 });
 

@@ -8,7 +8,7 @@ var nodemon = require('gulp-nodemon');
 
 gulp.task('browserify', [], function(){
 	var bundler = browserify({
-		entries: ['./Focas/app/js/app.js'], // Only need initial file, browserify finds the dependencies
+		entries: ['./Focas/app/src/app.js'], // Only need initial file, browserify finds the dependencies
 		transform: [reactify], // We want to convert JSX to normal javascript <--> !!This is pretty important!!
 		debug: true, // Gives us sourcemapping
 		cache: {},
@@ -28,7 +28,7 @@ gulp.task('browserify', [], function(){
 		    })
 				.pipe(source('app.js'))
 				// This is where you add uglifying etc.
-				.pipe(gulp.dest('./app/js'));
+				.pipe(gulp.dest('./Focas/app/js'));
 			console.log('Updated!', (Date.now() - updateStart) + 'ms');
 		})
 		.bundle() // Create the initial bundle when starting the task
@@ -36,36 +36,7 @@ gulp.task('browserify', [], function(){
       console.log(err.message);
     })
 		.pipe(source('app.js'))
-		.pipe(gulp.dest('./app/js'));
+		.pipe(gulp.dest('./Focas/app/js'));
 });
-
-gulp.task('nodemon', ['browserify'], function(){
-	serverConf = {source: 'app/src/lib/server.js'};
-	nodemon(serverConf);
-});	
-
-// gulp.task('browser-sync', ['nodemon'], function() {
-// 	browserSync.init(null, {
-// 		proxy: "http://localhost:5000",
-//         files: ["public/**/*.*"],
-//         browser: "google chrome",
-//         port: 7000,
-// 	});
-// });
-// gulp.task('nodemon', function (cb) {
-	
-// 	var started = false;
-	
-// 	return nodemon({
-// 		script: './Focas/app/js/app.js'
-// 	}).on('start', function () {
-// 		// to avoid nodemon being started multiple times
-		
-// 		if (!started) {
-// 			cb();
-// 			started = true; 
-// 		} 
-// 	});
-// });
 
 gulp.task('default', ['browserify']);

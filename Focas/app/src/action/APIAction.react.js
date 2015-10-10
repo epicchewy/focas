@@ -1,7 +1,5 @@
 var React = require('react');
-var parseCloud = require('../cloud/main');
 var Client = require('../../../cloud/main.js');
-
 
 function APIAction(){
 	this._init = false;
@@ -16,5 +14,5 @@ APIAction.prototype.init = function(){
 };
 
 APIAction.prototype.sendText = function(){
-
+	
 };
