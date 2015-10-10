@@ -1,5 +1,5 @@
 var React = require('react');
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+// var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var Modal = require('react-bootstrap/lib/Modal');
 var ModalBody = require('react-bootstrap/lib/Modal');
 var ModalHeader = require('react-bootstrap/lib/Modal');
@@ -19,22 +19,25 @@ var LoginView = React.createClass({
 		//will unmount
 	},
 	render: function(){
-		<div className = "loginModal">
-			<Modal>
-				<ModalHeader></ModalHeader>
-				<ModalBody></ModalBody>
-				<ModalFooter>
-					<Button onClick = {this.login}>Login</Button>
-					<Button onClick = {this.register}>Register</Button>
-				</ModalFooter>
-			</Modal>
-		</div>
+		return (
+			<div className = "loginModal">
+				<Modal>
+					<ModalHeader>test</ModalHeader>
+					<ModalBody></ModalBody>
+					<ModalFooter>
+						<Button onClick = {this.login}>Login</Button>
+						<Button onClick = {this.register}>Register</Button>
+					</ModalFooter>
+				</Modal>
+			</div>
+		);
+		
 	},
 	login: function(){
 
 	},
 	register: function(){
-		
+
 	}
 });
 

@@ -1,5 +1,8 @@
 var React = require('react');
-
+var Header = require('./Header.react');
+var LoginView = require('./LoginView.react');
+var GroupChatRoom = require('./GroupChatRoom.react');
+var Board = require('./Board.react');
 // function getStateFromStores(){
 // 	return {
 // 		login: true,
@@ -9,7 +12,7 @@ var React = require('react');
 
 var App = React.createClass({
 	getInitialState: function(){
-		return getStateFromStores();
+		return this.getStateFromStores();
 	},
 	componentDidMount: function(){
 		//store call
@@ -29,10 +32,11 @@ var App = React.createClass({
 			</div>
 		);
 			//make header chatroomarea and chatroom list 
-		}
 	},
 	getStateFromStores: function(){
-		
+		return {
+			login: true
+		}
 	}
 });
 

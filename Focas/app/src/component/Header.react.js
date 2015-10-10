@@ -13,14 +13,16 @@ var Header = React.createClass({
 	},
 	render: function() {
 		return (
-			
+			<div className="topHeader">
+				<PageHeader>
+					Focas
+				</PageHeader>
+			</div>
 		);
 	},
 	getStateFromStores: function(){
 		return {
-			<div>
-				<
-			</div>
+			title : 'test'
 		}
 	}
 
