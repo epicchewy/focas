@@ -15,7 +15,7 @@ var Header = React.createClass({
 		return (
 			<div className="topHeader">
 				<PageHeader>
-					Focas
+					Focasssssss
 				</PageHeader>
 			</div>
 		);
@@ -25,8 +25,6 @@ var Header = React.createClass({
 			title : 'test'
 		}
 	}
-
-	
 });
 
 module.exports = Header;

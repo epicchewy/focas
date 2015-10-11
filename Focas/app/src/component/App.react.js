@@ -27,11 +27,12 @@ var App = React.createClass({
 				<LoginView></LoginView>
 
 				<Header></Header>
+				
 				<GroupChatRoom></GroupChatRoom>
 				<Board></Board>
 			</div>
 		);
-			//make header chatroomarea and chatroom list 
+			//make header chatroomarea and chatroom list <GroupChatList></GroupChatList>
 	},
 	getStateFromStores: function(){
 		return {

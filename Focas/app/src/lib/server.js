@@ -40,6 +40,16 @@ Server.prototype.setUp = function(){
 								console.log("Error creating table: " + err);
 							}else{
 								console.log("table " + table + " made : " + result);
+								switch (table):
+									case "gHT":
+										this.createGroupHashTable();
+									case "users":
+										this.createUsersTable();
+									case "board":
+										this.createBoardTable();
+									default: 
+										//do nothing other tables are standard tables
+
 							}
 						});
 					}
@@ -48,6 +58,20 @@ Server.prototype.setUp = function(){
 			})
 		}
 	});
+};
+
+Server.prototype.createGroupHashTable = function(){
+	r.table('gHT').indexCreate().run(this.dbConnection, function(err, result){
+		
+	});
+};
+
+Server.prototype.createUsersTable = function(){
+
+};
+
+Server.prototype.createBoardTable = function(){
+
 };
 
 Server.prototype.authenticateUser = function(username, pass, age){
@@ -85,7 +109,7 @@ Server.prototype.sendConfirmEmail = function(email){
 	sendgrid.send(email);
 }
 
-Server.prototype.loadUserData = function(user){
+Server.prototype.loadUserData = function(user, cb){
 	//load groups/boards and have empty middle portion for empty chatroom
 	r.table(dbConfig.tables.groupHashTable).map(
 		r.branch(
@@ -107,17 +131,33 @@ Server.prototype.loadUserData = function(user){
 	});
 }
 
-Server.prototype.realMessages = function(){
+Server.prototype.postToBoard = function(post, user, focasFeed, cb){
+	r.table(dbConfig.tables.board).insert({
 
+	});
 };
 
-Server.prototype.postToBoard = function(post, user, focasFeed){
-	r.table(dbConfig.tables.board).insert({
+Server.prototype.subscribeToMessages = function(groupId, cb){
+	//find room in table
+	r.table(dbConfig.tables.groupHashTable).filter({group: groupId}).run(this.dbConnection, function(err, result){
+		if(err){
+			console.log("error finding group : " + err);
+		}else{
+			console.log("message result : " + result);
+			var messageHash = result.messageHash;
+			r.table(dbConfig.tables.messages).filter({messageHash: messageHash}).changes().run(this.dbConnection, function(err, cursor){
+				if(err){
+					console.log("error subscribing to messages : " + err);
+				}else{
+					cursor.each(console.log);
+				}
+			});
+		}
 		
 	});
 };
 
-Server.prototype.streamMessages = function(){
+Server.prototype.subscribeToBoard = function(focasId, groupId, cb){
 	
 };
 

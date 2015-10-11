@@ -25,9 +25,11 @@ APIAction.prototype.sendText = function(){
 	
 };
 
-APIAction.prototype.postToBoard = function(post, user, focasFeed){
-	this.server.postToBoard(post, user, focasFeed);
+APIAction.prototype.postToBoard = function(post, user, focasFeed, cb){
+	this.server.postToBoard(post, user, focasFeed, cb);
 };
+
+	
 
 APIAction.prototype.fetchMessages = function(feedId){
 	async.nextTick(function(){

@@ -1,7 +1,7 @@
 var React = require('react');
 
 
-var Header = React.createClass({
+var Subheader = React.createClass({
 	getInitialState: function() {
 		return this._getStateFromStores();
 	},
@@ -50,4 +50,4 @@ var Header = React.createClass({
 	
 });
 
-module.exports = Header;
+module.exports = Subheader;
