@@ -22,14 +22,16 @@ APIAction.prototype.init = function(){
 };
 
 APIAction.prototype.sendText = function(){
-	
+	if(this.server){
+		this.server.sendMessage();
+	}
 };
 
 APIAction.prototype.postToBoard = function(post, user, focasFeed, cb){
 	this.server.postToBoard(post, user, focasFeed, cb);
 };
 
-	
+
 
 APIAction.prototype.fetchMessages = function(feedId){
 	async.nextTick(function(){

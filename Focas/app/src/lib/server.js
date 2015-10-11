@@ -1,6 +1,6 @@
 var r = require('rethinkdb');
-var _ = require('underscore');
-var sendgrid = require("sendgrid")('epicchewy', 'CzoEw-xbQRiy0Xc8e5255A');
+
+var sendgrid = require("sendgrid")('username', 'API-KEY');
 
 var dbConfig = {
 	host: 'localhost',
@@ -34,7 +34,7 @@ Server.prototype.setUp = function(){
 				}else{
 					console.log("Created new focas database!");
 					//connect
-					for each(table in dbConfig.tables){
+					for(table in dbConfig.tables){
 						r.db('focas').tableCreate(table).run(this.dbConnection, function(err, result){
 							if(err){
 								console.log("Error creating table: " + err);
@@ -61,17 +61,46 @@ Server.prototype.setUp = function(){
 };
 
 Server.prototype.createGroupHashTable = function(){
-	r.table('gHT').indexCreate().run(this.dbConnection, function(err, result){
+	var indexs = {'name', 'users', 'messages', 'groupId','focasGroups'}
+	for(index in indexs){
+		if(index ==== 'users' || index === 'focasGroups'){
+			r.table('gHT').indexCreate(index, {multi: true}).run(this.dbConnection, function(err, result){
+				if (err) ? console.log("error creating group hash table : " + err); : console.log("result of group hash table : " + result);
+			});
+		}else{
+			r.table('gHT').indexCreate(index).run(this.dbConnection, function(err, result){
+				if (err) ? console.log("error creating group hash table : " + err); : console.log("result of group hash table : " + result);
+			});
+		}
 		
-	});
+	}
+	
 };
 
 Server.prototype.createUsersTable = function(){
-
+	r.table.('users').indexCreate('userId', r.row('data').run(this.dbConnection, function(err, result){
+		if(err){
+			console.log("error created user table : " + err);
+		}else{
+			console.log("result user table : " + result);
+		}
+	});
 };
 
 Server.prototype.createBoardTable = function(){
-
+	var indexes = ['boardId', 'groupIds', 'posts'];
+	for(index in indexes){
+		if(index === 'groupIds'){
+			r.table('board').indexCreate(index, {multi: true}).run(this.dbConnection, function(err, reuslt){
+				if (err) ? console.log("error creating group hash table : " + err); : console.log("result of group hash table : " + result);
+			});	
+		}else{
+			r.table('board').indexCreate(index).run(this.dbConnection, function(err, reuslt){
+				if (err) ? console.log("error creating group hash table : " + err); : console.log("result of group hash table : " + result);
+			});
+		}
+		
+	}
 };
 
 Server.prototype.authenticateUser = function(username, pass, age){
@@ -87,7 +116,7 @@ Server.prototype.authenticateUser = function(username, pass, age){
 Server.prototype.addNewUser = function(userData){
 	r.table(dbConfig.tables.accounts).insert({
 		{user: userData.username, password: userData.password, email: userData.email, fullName : userData.fullName, age: userData.age}
-	}),run(this.dbConnection, function(err, result){
+	}).run(this.dbConnection, function(err, result){
 		if(err){
 			console.log("add user error: " + err);
 		}else{
@@ -131,9 +160,15 @@ Server.prototype.loadUserData = function(user, cb){
 	});
 }
 
-Server.prototype.postToBoard = function(post, user, focasFeed, cb){
-	r.table(dbConfig.tables.board).insert({
-
+Server.prototype.postToBoard = function(post, user, focasFeed, id, cb){
+	r.table(dbConfig.tables.board).get(id).update(
+		{posts: r.row('posts').append(post)}
+	).run(this.dbConnection, function(err, result){
+		if(err){
+			console.log("error posting to board : " + err);
+		}else{
+			console.log("successfully posted to baord : " + result);
+		}
 	});
 };
 
@@ -158,7 +193,53 @@ Server.prototype.subscribeToMessages = function(groupId, cb){
 };
 
 Server.prototype.subscribeToBoard = function(focasId, groupId, cb){
-	
+	r.table('board').filter({focasId: focasId}).changes().run(this.dbConnection, function(err, cursor){
+		if(err){
+			console.log("error finding board : " + err);
+		}else{
+			console.log("recent posts");
+			cursor.each(console.log);
+		}
+	});
+};
+
+Server.prototype.createNewGroup = function(name, user, userArr, groupId){
+	//update the grouphasttable and insert new object
+	r.table('gHT').insert({
+		name: name,
+		users: userArr,
+		messages: {},
+		groupId: groupId,
+		board: []
+	}).run(this.dbConnection, function(err, result){
+		if(err){
+			console.log("error creating new group : " + err);
+		}else{
+			console.log("new group created : " + result);
+		}
+	});
+}
+
+Server.prototype.addToGroup = function(userId, groupId){
+	r.table('gHT').get(groupId).update(
+		{users : r.row('users').append(userId)}
+	).run(this.dbConnection, function(err, result){
+		if (err) ? console.log("error creating group hash table : " + err); : console.log("result of group hash table : " + result);
+	});
+}
+
+Server.prototype.sendMessage = function(messageHash, message){
+	r.table('messages').get(messageHash).update(
+		{ 
+			messages: r.row('messages').append(message)
+		}
+	).run(this.dbConnection, function(err, result){
+		if(err){
+			console.log("error sending message : " + err);
+		}else{
+			console.log("sent message : " + result);
+		}
+	});
 };
 
 Server.prototype.logout = function(){
