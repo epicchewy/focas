@@ -14,7 +14,7 @@ var Board = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className = "board">body</div>
+			<div className = "board"></div>
 		);
 	},
 

@@ -13,10 +13,14 @@ var Header = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className="topHeader">
-				<PageHeader>
-					Focasssssss
-				</PageHeader>
+			<div className = "header">
+					<h1 className = "title"> FOCAS </h1>
+
+					<ul className="navi">
+        				<li><a href="#">JOIN</a></li>
+        				<li><a href="#">NEW</a></li>
+        				<li><a href="#">ABOUT</a></li>
+    				</ul>
 			</div>
 		);
 	},

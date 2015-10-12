@@ -1,5 +1,4 @@
 var r = require('rethinkdb');
-
 var sendgrid = require("sendgrid")('username', 'API-KEY');
 
 var dbConfig = {

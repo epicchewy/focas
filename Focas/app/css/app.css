@@ -1,52 +1,49 @@
 .header h1{
-	font-size: 80px;
+	display: inline;
+	font-size: 70px;
 	color: white;
 	background-color: lightgray;
 	margin-top: auto;
 	margin-left: auto;
 	padding-left: 15px;
-	padding-top: 10px;
 	text-align: center;
 
 }
 .header {
+	font: 15px arial, sans-serif;
 	background-color:lightgray;
 	border-bottom: 4px solid black;
+	padding-top: 8px;
+	padding-bottom: 13px;
 }
 .navi li{
+	margin-top:25px;
+	margin-right: 10px;
+	float:right;
 	display: inline;
 	font-size: 25px;
 	background-color: lightgray;
 }
 .navi {
-	margin-top: 35px;
+	display:inline;
+	padding-top: 30px;
+	margin-top: 40px;
 	text-align: center;
 }
 .navi a{
-	
-	padding-top: 20px;
+	padding-top: 30px;
 	padding: 10px 10px;
 	color: white;
 }
 
-.col-md-2 {
-	padding-left:0px;
-	padding-right:0px;
-}
-.col-md-3 {
-	padding-left:0px;
-	padding-right:0px;
-}
-.col-md-4 {
-	padding-left:0px;
-	padding-right:0px;
-}
-.col-md-9 {
-	padding-left:0px;
-	padding-right:0px;
+.row h1{
+	font: 20px arial, sans-serif;
 }
 
 .chatlisttitle{
+	position: relative;
+	float: left;
+	width: 19.45%;
 	border-right: 2px solid black;
 	border-bottom: 2px solid black;
 	text-align: center;
@@ -57,6 +54,9 @@
 }
 
 .boardtitle{
+	position: relative;
+	float: left;
+	width: 29.5%;
 	border-right: 2px solid black;
 	border-bottom: 2px solid black;
 	border-left: 2px solid black;
@@ -65,8 +65,12 @@
 	padding-top: 6px;
 	padding-bottom: 10px;
 	background-color: darkgray;
+}
 
 .chattitle{
+	position: relative;
+	float: left;
+	width: 29.5%;
 	border-right: 2px solid black;
 	border-bottom: 2px solid black;
 	border-left: 2px solid black;
@@ -78,6 +82,9 @@
 }
 
 .paneltitle{
+	position: relative;
+	float: left;
+	width: 20%;
 	border-bottom: 2px solid black;
 	border-left: 2px solid black;
 	text-align: center;
@@ -85,4 +92,24 @@
 	padding-top: 6px;
 	padding-bottom: 10px;
 	background-color: darkgray;
+}
+
+.grouptile{
+	width: 18.75%;
+	border-right: 2px solid black;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	color:white;
+	background-color: darkgray;
+	vertical-align: top;
+	padding-left: 5px;
+	padding-top: 10px;
+	padding-bottom: 8px;
+}
+.lastmsg p{
+	display: inline;
+	font: 10px arial, sans-serif;
+}
+.groupName strong{
+	font: 20px arial, sans-serif;
 }

@@ -14,7 +14,7 @@ var GroupChatRoom = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className = "groupChatRoom">body</div>
+			<div className = "groupChatRoom"></div>
 		);
 	},
 
