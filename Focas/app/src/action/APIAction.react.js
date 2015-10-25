@@ -21,9 +21,9 @@ APIAction.prototype.init = function(){
 	this._init = true;
 };
 
-APIAction.prototype.sendText = function(){
+APIAction.prototype.sendText = function(group, text){
 	if(this.server){
-		this.server.sendMessage();
+		this.server.sendMessage(group, text);
 	}
 };
 
@@ -31,7 +31,19 @@ APIAction.prototype.postToBoard = function(post, user, focasFeed, cb){
 	this.server.postToBoard(post, user, focasFeed, cb);
 };
 
+APIAction.prototype.login = function(username, pass){
+	if(this.server){
+		this.server.authenticateUser(username, pass);
+		
+	}
+}
 
+APIAction.prototype.register = function(userJSON){
+	if(this.server){
+		this.server.addNewUser(userJSON);
+		//sends confirm email from server
+	}
+}
 
 APIAction.prototype.fetchMessages = function(feedId){
 	async.nextTick(function(){

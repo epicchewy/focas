@@ -1,6 +1,6 @@
 var React = require('react');
 
-var Board = React.createClass({
+var Background = React.createClass({
 	getInitialState: function(){
 		return{
 			login: false
@@ -14,10 +14,13 @@ var Board = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className = "board">body</div>
+			<div className = "background">
+				<p>background</p>
+
+			</div>
 		);
 	},
 
 });
 
-module.exports = Board;
+module.exports = Background;

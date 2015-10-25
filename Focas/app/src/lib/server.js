@@ -39,7 +39,7 @@ Server.prototype.setUp = function(){
 								console.log("Error creating table: " + err);
 							}else{
 								console.log("table " + table + " made : " + result);
-								switch (table):
+								switch (table){
 									case "gHT":
 										this.createGroupHashTable();
 									case "users":
@@ -48,6 +48,7 @@ Server.prototype.setUp = function(){
 										this.createBoardTable();
 									default: 
 										//do nothing other tables are standard tables
+								}
 
 							}
 						});
@@ -102,8 +103,8 @@ Server.prototype.createBoardTable = function(){
 	}
 };
 
-Server.prototype.authenticateUser = function(username, pass, age){
-	r.table(dbConfig.tables.accounts).filter({user: username, password: pass, age: age}).run(this.dbConnection, function(err, result){
+Server.prototype.authenticateUser = function(username, pass){
+	r.table(dbConfig.tables.accounts).filter({user: username, password: pass}).run(this.dbConnection, function(err, result){
 		if(err){
 			console.log("error logging in : " + err);
 		}else{

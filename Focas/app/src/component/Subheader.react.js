@@ -14,6 +14,7 @@ var Subheader = React.createClass({
 	render: function() {
 		return (
 			<div className = "row">
+
 				<div className = "chatlisttitle">
 					<h1>GROUPS</h1>
 				</div>
